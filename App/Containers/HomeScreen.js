@@ -1,6 +1,18 @@
 import React, { Component } from "react";
-import { Container, Content, Button, Text, View } from "native-base";
+import {
+  Container,
+  Content,
+  Button,
+  Text,
+  View,
+  Header,
+  Left,
+  Body,
+  Right,
+  Icon
+} from "native-base";
 import { connect } from "react-redux";
+import { TouchableOpacity } from "react-native";
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 
@@ -24,6 +36,22 @@ class HomeScreen extends Component {
   render() {
     return (
       <Container style={styles.container}>
+        {/* header */}
+        <Header
+          iosBarStyle="light-content"
+          androidStatusBarColor="red"
+          style={{ backgroundColor: "red" }}
+        >
+          <Left style={{ flex: 1 }} />
+          <Body
+            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+          >
+            <Text style={{ color: "#fff", fontSize: 20 }}>Tuman</Text>
+          </Body>
+          <Right style={{ flex: 1 }} />
+        </Header>
+
+        {/* content */}
         <Content padder>
           <View
             style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
@@ -36,26 +64,60 @@ class HomeScreen extends Component {
                 justifyContent: "center"
               }}
             >
-              <Button full onPress={this.navigateToBelajarMandarin}>
-                <Text>Belajar Mandarin</Text>
-              </Button>
+              {/* middle buttons */}
+              <View
+                style={{
+                  flex: 5,
+                  alignItems: "center",
+                  justifyContent: "center"
+                }}
+              >
+                {/* Belajar Mandarin */}
+                <TouchableOpacity
+                  onPress={this.navigateToBelajarMandarin}
+                  style={{
+                    alignItems: "center"
+                  }}
+                >
+                  <Icon
+                    name={"md-book"}
+                    style={{ fontSize: 80, color: "black" }}
+                  />
+                  <Text>Belajar Mandarin</Text>
+                </TouchableOpacity>
 
-              <Button full style={{ marginTop: 15 }}>
-                <Text>学习印尼语</Text>
-              </Button>
-            </View>
+                {/* 学习印尼语 */}
+                <TouchableOpacity
+                  onPress={this.navigateToBelajarMandarin}
+                  style={{
+                    alignItems: "center",
+                    marginTop: 30
+                  }}
+                >
+                  <Icon
+                    name={"ios-book"}
+                    style={{ fontSize: 80, color: "black" }}
+                  />
+                  <Text>学习印尼语</Text>
+                </TouchableOpacity>
+              </View>
 
-            <View
-              style={{
-                flex: 1,
-                width: 150,
-                alignItems: "center",
-                justifyContent: "center"
-              }}
-            >
-              <Button full onPress={this.navigateToDaftarTutor}>
-                <Text>Daftar Tutor</Text>
-              </Button>
+              {/* daftar tutor */}
+              <View
+                style={{
+                  flex: 1,
+                  alignItems: "center",
+                  justifyContent: "center"
+                }}
+              >
+                <Button
+                  full
+                  onPress={this.navigateToDaftarTutor}
+                  style={{ backgroundColor: "red" }}
+                >
+                  <Text>Daftar Tutor</Text>
+                </Button>
+              </View>
             </View>
           </View>
         </Content>

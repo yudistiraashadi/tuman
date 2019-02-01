@@ -11,6 +11,7 @@ import {
   Right,
   Icon
 } from "native-base";
+import { TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -41,7 +42,12 @@ class BelajarMandarinScreen extends Component {
   render() {
     return (
       <Container style={styles.container}>
-        <Header>
+        {/* header */}
+        <Header
+          iosBarStyle="light-content"
+          androidStatusBarColor="red"
+          style={{ backgroundColor: "red" }}
+        >
           <Left style={{ flex: 1 }}>
             <Button transparent onPress={this.navigateBack}>
               <Icon name="md-arrow-back" />
@@ -55,6 +61,7 @@ class BelajarMandarinScreen extends Component {
           <Right style={{ flex: 1 }} />
         </Header>
 
+        {/* content */}
         <Content padder>
           <View
             style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
@@ -62,22 +69,38 @@ class BelajarMandarinScreen extends Component {
             <View
               style={{
                 height: windowHeight * (80 / 100),
-                width: 230,
                 alignItems: "center",
                 justifyContent: "center"
               }}
             >
-              <Button full onPress={this.navigateToCariTutor}>
-                <Text>Cari Tutor</Text>
-              </Button>
-
-              <Button
-                full
-                onPress={this.navigateToAutodidak}
-                style={{ marginTop: 15 }}
+              {/* Cari Tutor */}
+              <TouchableOpacity
+                onPress={this.navigateToCariTutor}
+                style={{
+                  alignItems: "center"
+                }}
               >
+                <Icon
+                  name={"md-search"}
+                  style={{ fontSize: 80, color: "black" }}
+                />
+                <Text>Cari Tutor</Text>
+              </TouchableOpacity>
+
+              {/* Autodidak */}
+              <TouchableOpacity
+                onPress={this.navigateToAutodidak}
+                style={{
+                  alignItems: "center",
+                  marginTop: 30
+                }}
+              >
+                <Icon
+                  name={"md-list"}
+                  style={{ fontSize: 80, color: "black" }}
+                />
                 <Text>Autodidak</Text>
-              </Button>
+              </TouchableOpacity>
             </View>
           </View>
         </Content>

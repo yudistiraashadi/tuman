@@ -31,7 +31,11 @@ class AutodidakScreen extends Component {
   render() {
     return (
       <Container style={styles.container}>
-        <Header>
+        <Header
+          iosBarStyle="light-content"
+          androidStatusBarColor="red"
+          style={{ backgroundColor: "red" }}
+        >
           <Left style={{ flex: 1 }}>
             <Button transparent onPress={this.navigateBack}>
               <Icon name="md-arrow-back" />

@@ -37,7 +37,12 @@ class CariTutorScreen extends Component {
   render() {
     return (
       <Container style={styles.container}>
-        <Header>
+        {/* header */}
+        <Header
+          iosBarStyle="light-content"
+          androidStatusBarColor="red"
+          style={{ backgroundColor: "red" }}
+        >
           <Left style={{ flex: 1 }}>
             <Button transparent onPress={this.navigateBack}>
               <Icon name="md-arrow-back" />
@@ -51,6 +56,7 @@ class CariTutorScreen extends Component {
           <Right style={{ flex: 1 }} />
         </Header>
 
+        {/* content */}
         <Content padder>
           <List>
             <ListItem avatar noIndent>
