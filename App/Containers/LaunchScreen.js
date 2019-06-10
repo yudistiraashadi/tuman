@@ -1,32 +1,100 @@
-import React, { Component } from 'react'
-import { ScrollView, Text, Image, View } from 'react-native'
-import DevscreensButton from '../../ignite/DevScreens/DevscreensButton.js'
+import React, { Component } from "react";
+import { Image } from "react-native";
 
-import { Images } from '../Themes'
+import AppIntroSlider from "react-native-app-intro-slider";
 
 // Styles
-import styles from './Styles/LaunchScreenStyles'
+import styles from "./Styles/LaunchScreenStyles";
+import { Dimensions } from "react-native";
+const windowWidth = Dimensions.get("window").width;
+
+const slides = [
+  {
+    key: "a",
+    image: require("../Images/slide-1.png"),
+    title: "Menyenangkan",
+    text: "Belajar mandarin enggak harus susah.",
+    titleStyle: {
+      width: windowWidth,
+      textAlign: "center",
+      fontSize: 35,
+      color: "#FFF"
+    },
+    textStyle: {
+      width: windowWidth,
+      textAlign: "center",
+      fontSize: 18,
+      color: "#FFF"
+    },
+    imageStyle: {
+      width: 320,
+      height: 380
+    },
+    backgroundColor: "#59b2ab"
+  },
+  {
+    key: "b",
+    image: require("../Images/slide-2.png"),
+    title: "Gampang",
+    text: "Kamu bisa belajar dimanapun dan kapanpun!",
+    titleStyle: {
+      width: windowWidth,
+      textAlign: "center",
+      fontSize: 35,
+      color: "#FFF"
+    },
+    textStyle: {
+      width: windowWidth,
+      textAlign: "center",
+      fontSize: 18,
+      color: "#FFF"
+    },
+    imageStyle: {
+      width: 380,
+      height: 300
+    },
+    backgroundColor: "#febe29"
+  }
+];
 
 export default class LaunchScreen extends Component {
-  render () {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showRealApp: false
+    };
+  }
+
+  // componentDidUpdate
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.state.showRealApp === true) {
+      this.navigateToHomeScreen();
+    }
+  }
+
+  // navigation
+  navigateToHomeScreen = () => {
+    this.props.navigation.navigate("HomeScreen");
+  };
+
+  // AppIntroSlider functions
+  _onDone = () => {
+    // User finished the introduction. Show real app through
+    // navigation or simply by controlling state
+    this.setState({ showRealApp: true });
+  };
+
+  render() {
     return (
-      <View style={styles.mainContainer}>
-        <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
-        <ScrollView style={styles.container}>
-          <View style={styles.centered}>
-            <Image source={Images.launch} style={styles.logo} />
-          </View>
-
-          <View style={styles.section} >
-            <Image source={Images.ready} />
-            <Text style={styles.sectionText}>
-              This probably isn't what your app is going to look like. Unless your designer handed you this screen and, in that case, congrats! You're ready to ship. For everyone else, this is where you'll see a live preview of your fully functioning app using Ignite.
-            </Text>
-          </View>
-
-          <DevscreensButton />
-        </ScrollView>
-      </View>
-    )
+      <AppIntroSlider
+        showPrevButton={true}
+        prevLabel="Kembali"
+        nextLabel="Lanjut"
+        doneLabel="Masuk"
+        slides={slides}
+        onDone={this._onDone}
+      />
+    );
   }
 }

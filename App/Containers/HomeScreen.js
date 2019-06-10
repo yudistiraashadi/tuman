@@ -88,7 +88,6 @@ class HomeScreen extends Component {
 
                 {/* 学习印尼语 */}
                 <TouchableOpacity
-                  onPress={this.navigateToBelajarMandarin}
                   style={{
                     alignItems: "center",
                     marginTop: 30
